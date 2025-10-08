@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Art of Storytelling in Modern Literature - Boganto</title>
+    <meta name="description" content="Explore the timeless techniques that make stories captivating and discover how contemporary authors are reshaping narrative traditions in this comprehensive guide.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                        },
+                        navy: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .card {
+            @apply bg-white rounded-xl shadow-lg border border-gray-100;
+        }
+        
+        .btn-primary {
+            @apply bg-primary-500 text-white font-semibold py-3 px-6 rounded-lg hover:bg-primary-600 transition-all duration-200 transform hover:scale-105;
+        }
+        
+        .prose {
+            max-width: none;
+        }
+        
+        .prose h1 {
+            @apply text-3xl font-bold text-navy-800 mb-6;
+        }
+        
+        .prose h2 {
+            @apply text-2xl font-semibold text-navy-800 mb-4 mt-8;
+        }
+        
+        .prose h3 {
+            @apply text-xl font-semibold text-navy-700 mb-3 mt-6;
+        }
+        
+        .prose p {
+            @apply text-navy-600 leading-relaxed mb-6;
+        }
+        
+        .prose ul {
+            @apply list-disc ml-6 space-y-2 mb-6;
+        }
+        
+        .prose li {
+            @apply text-navy-600;
+        }
+        
+        .prose blockquote {
+            @apply border-l-4 border-primary-500 pl-6 italic text-navy-700 bg-gray-50 py-4 rounded-r-lg mb-6;
+        }
+        
+        .prose a {
+            @apply text-primary-600 hover:text-primary-700 font-medium;
+        }
+        
+        .prose strong {
+            @apply font-semibold text-navy-800;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center">
+                    <div class="text-2xl font-bold text-primary-500">
+                        Boganto
+                    </div>
+                    <div class="ml-2 text-sm text-navy-600 hidden sm:block">
+                        Premium Bookstore
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-navy-700 hover:text-primary-500 font-medium transition-colors duration-200">Home</a>
+                    <a href="#" class="text-navy-700 hover:text-primary-500 font-medium transition-colors duration-200">Books</a>
+                    <a href="#" class="text-navy-700 hover:text-primary-500 font-medium transition-colors duration-200">Categories</a>
+                    <a href="featured.html" class="text-navy-700 hover:text-primary-500 font-medium transition-colors duration-200">Featured</a>
+                    <a href="latest.html" class="text-navy-700 hover:text-primary-500 font-medium transition-colors duration-200">Latest</a>
+                    <a href="#" class="text-navy-700 hover:text-primary-500 font-medium transition-colors duration-200">Contact</a>
+                </nav>
+
+                <!-- Search Bar -->
+                <div class="hidden md:flex items-center">
+                    <form class="relative">
+                        <input type="text" placeholder="Search blogs..." class="w-64 pl-4 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                        <button type="submit" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-primary-500">
+                            <i data-lucide="search" class="h-5 w-5"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-navy-700 hover:text-primary-500 focus:outline-none focus:text-primary-500">
+                        <i data-lucide="menu" class="h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="md:hidden hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200">
+                    <a href="index.html" class="block px-3 py-2 text-navy-700 hover:text-primary-500 font-medium">Home</a>
+                    <a href="#" class="block px-3 py-2 text-navy-700 hover:text-primary-500 font-medium">Books</a>
+                    <a href="#" class="block px-3 py-2 text-navy-700 hover:text-primary-500 font-medium">Categories</a>
+                    <a href="featured.html" class="block px-3 py-2 text-navy-700 hover:text-primary-500 font-medium">Featured</a>
+                    <a href="latest.html" class="block px-3 py-2 text-navy-700 hover:text-primary-500 font-medium">Latest</a>
+                    <a href="#" class="block px-3 py-2 text-navy-700 hover:text-primary-500 font-medium">Contact</a>
+                    
+                    <!-- Mobile Search -->
+                    <div class="px-3 py-2">
+                        <form class="relative">
+                            <input type="text" placeholder="Search blogs..." class="w-full pl-4 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                            <button type="submit" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-primary-500">
+                                <i data-lucide="search" class="h-5 w-5"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="min-h-screen bg-gray-50">
+        <!-- Breadcrumb -->
+        <div class="bg-white border-b border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                <nav class="flex" aria-label="Breadcrumb">
+                    <ol class="flex items-center space-x-2 text-sm">
+                        <li>
+                            <a href="index.html" class="text-navy-600 hover:text-primary-600 font-medium">Home</a>
+                        </li>
+                        <li>
+                            <i data-lucide="chevron-right" class="h-4 w-4 text-navy-400"></i>
+                        </li>
+                        <li>
+                            <a href="#" class="text-navy-600 hover:text-primary-600 font-medium">Fiction</a>
+                        </li>
+                        <li>
+                            <i data-lucide="chevron-right" class="h-4 w-4 text-navy-400"></i>
+                        </li>
+                        <li class="text-navy-400" aria-current="page">The Art of Storytelling in Modern Literature</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Article Content -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <!-- Main Content -->
+                <article class="lg:col-span-3 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                    <!-- Featured Image -->
+                    <div class="relative h-64 md:h-80 lg:h-96 overflow-hidden">
+                        <img src="assets/images/book-1.jpg" alt="The Art of Storytelling in Modern Literature" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    </div>
+
+                    <!-- Article Header -->
+                    <div class="p-8 lg:p-12">
+                        <!-- Meta Information -->
+                        <div class="flex flex-wrap items-center gap-4 text-sm text-navy-500 mb-6">
+                            <div class="flex items-center">
+                                <i data-lucide="calendar" class="h-4 w-4 mr-2"></i>
+                                <span>October 5, 2024</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-lucide="user" class="h-4 w-4 mr-2"></i>
+                                <span>By Sarah Johnson</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-lucide="folder" class="h-4 w-4 mr-2"></i>
+                                <a href="#" class="text-primary-600 hover:text-primary-700 font-medium">Fiction</a>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-lucide="eye" class="h-4 w-4 mr-2"></i>
+                                <span>1,234 views</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-lucide="clock" class="h-4 w-4 mr-2"></i>
+                                <span>8 min read</span>
+                            </div>
+                        </div>
+
+                        <!-- Title -->
+                        <h1 class="text-4xl lg:text-5xl font-bold text-navy-800 mb-6 leading-tight">
+                            The Art of Storytelling in Modern Literature
+                        </h1>
+
+                        <!-- Excerpt -->
+                        <div class="text-xl text-navy-600 leading-relaxed mb-8 p-6 bg-navy-50 rounded-xl border-l-4 border-primary-500">
+                            Explore the timeless techniques that make stories captivating and discover how contemporary authors are reshaping narrative traditions with innovative approaches to character development, plot structure, and thematic exploration.
+                        </div>
+
+                        <!-- Social Share -->
+                        <div class="flex items-center space-x-4 mb-8 py-4 border-y border-gray-200">
+                            <span class="text-navy-600 font-medium">Share this article:</span>
+                            <div class="flex space-x-3">
+                                <a href="#" class="text-blue-600 hover:text-blue-700 transition-colors duration-200" title="Share on Facebook">
+                                    <i data-lucide="facebook" class="h-5 w-5"></i>
+                                </a>
+                                <a href="#" class="text-blue-400 hover:text-blue-500 transition-colors duration-200" title="Share on Twitter">
+                                    <i data-lucide="twitter" class="h-5 w-5"></i>
+                                </a>
+                                <a href="#" class="text-blue-700 hover:text-blue-800 transition-colors duration-200" title="Share on LinkedIn">
+                                    <i data-lucide="linkedin" class="h-5 w-5"></i>
+                                </a>
+                                <a href="#" class="text-navy-600 hover:text-navy-700 transition-colors duration-200" title="Copy link">
+                                    <i data-lucide="link" class="h-5 w-5"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Article Content -->
+                        <div class="prose prose-lg max-w-none">
+                            <p>
+                                In the ever-evolving landscape of modern literature, the art of storytelling continues to captivate readers across generations. From the classical narrative structures of Homer's epics to the experimental techniques of contemporary authors, storytelling remains a fundamental human experience that transcends cultural and temporal boundaries.
+                            </p>
+
+                            <h2>The Foundation of Great Storytelling</h2>
+
+                            <p>
+                                At its core, storytelling is about human connection. Every compelling narrative shares certain universal elements that resonate with readers regardless of their background. These fundamental components include:
+                            </p>
+
+                            <ul>
+                                <li><strong>Character Development:</strong> Creating multi-dimensional characters that readers can relate to and care about</li>
+                                <li><strong>Conflict and Tension:</strong> Establishing stakes that matter and obstacles that challenge protagonists</li>
+                                <li><strong>Emotional Arc:</strong> Crafting a journey that takes readers through a range of feelings</li>
+                                <li><strong>Thematic Depth:</strong> Exploring universal truths about the human condition</li>
+                                <li><strong>Authentic Voice:</strong> Developing a unique narrative style that feels genuine and engaging</li>
+                            </ul>
+
+                            <h2>Modern Techniques and Innovation</h2>
+
+                            <p>
+                                Contemporary authors have revolutionized traditional storytelling methods by incorporating innovative techniques that reflect our modern world. These include non-linear narratives, multiple perspectives, unreliable narrators, and interactive elements that engage readers in new ways.
+                            </p>
+
+                            <blockquote>
+                                "The best stories are not about the plot twists or the clever dialogue, but about the human truth they reveal. They show us who we are, who we might become, and why it matters." — Margaret Atwood
+                            </blockquote>
+
+                            <h3>Digital Age Storytelling</h3>
+
+                            <p>
+                                The digital revolution has transformed how stories are told and consumed. Authors now have access to multimedia elements, interactive features, and global audiences. Social media platforms have given rise to micro-storytelling, where entire narratives unfold in tweets, Instagram posts, or TikTok videos.
+                            </p>
+
+                            <p>
+                                This shift has challenged traditional publishing models and opened new avenues for diverse voices to be heard. Independent authors can now reach readers directly, while established writers experiment with serialized content and real-time audience interaction.
+                            </p>
+
+                            <h2>The Psychology Behind Compelling Narratives</h2>
+
+                            <p>
+                                Neuroscience research has revealed fascinating insights into why certain stories captivate us. When we read or hear a story, our brains don't just process the words—they simulate the experiences described. This phenomenon, known as "neural coupling," explains why we feel emotionally invested in fictional characters and their journeys.
+                            </p>
+
+                            <p>
+                                Understanding this psychological aspect helps authors craft more engaging narratives by:
+                            </p>
+
+                            <ul>
+                                <li>Creating sensory-rich descriptions that activate multiple brain regions</li>
+                                <li>Using metaphors and analogies that connect to readers' experiences</li>
+                                <li>Establishing empathetic connections between characters and audience</li>
+                                <li>Building suspense through strategic information disclosure</li>
+                            </ul>
+
+                            <h2>Cultural Impact and Social Responsibility</h2>
+
+                            <p>
+                                Modern storytellers increasingly recognize their role in shaping cultural narratives and social consciousness. Literature has the power to challenge prejudices, promote empathy, and inspire social change. Authors today are more mindful of representation, authenticity, and the broader implications of their work.
+                            </p>
+
+                            <p>
+                                This awareness has led to richer, more diverse storytelling that reflects the complexity of our global society. We see more stories from marginalized voices, cross-cultural collaborations, and narratives that address contemporary issues like climate change, technology's impact on humanity, and social justice.
+                            </p>
+
+                            <h2>Looking Forward: The Future of Storytelling</h2>
+
+                            <p>
+                                As we look to the future, storytelling will continue to evolve with technological advances and changing social dynamics. Virtual reality, artificial intelligence, and augmented reality are already beginning to influence how stories are created and experienced.
+                            </p>
+
+                            <p>
+                                However, regardless of the medium or technology involved, the fundamental human need for meaningful stories remains constant. The most successful narratives of the future will likely be those that maintain the timeless elements of great storytelling while embracing innovative ways to connect with audiences.
+                            </p>
+
+                            <p>
+                                Whether you're an aspiring writer or a passionate reader, understanding the art of storytelling enriches your relationship with literature and helps you appreciate the craft behind every compelling narrative. The stories that move us today build upon centuries of human tradition while pointing toward exciting new possibilities for the future.
+                            </p>
+                        </div>
+
+                        <!-- Tags -->
+                        <div class="mt-12 pt-8 border-t border-gray-200">
+                            <div class="flex items-center flex-wrap gap-2">
+                                <span class="text-navy-600 font-medium mr-2">Tags:</span>
+                                <a href="#" class="bg-primary-50 text-primary-700 px-3 py-1 rounded-full text-sm hover:bg-primary-100 transition-colors duration-200">#storytelling</a>
+                                <a href="#" class="bg-primary-50 text-primary-700 px-3 py-1 rounded-full text-sm hover:bg-primary-100 transition-colors duration-200">#literature</a>
+                                <a href="#" class="bg-primary-50 text-primary-700 px-3 py-1 rounded-full text-sm hover:bg-primary-100 transition-colors duration-200">#writing</a>
+                                <a href="#" class="bg-primary-50 text-primary-700 px-3 py-1 rounded-full text-sm hover:bg-primary-100 transition-colors duration-200">#fiction</a>
+                                <a href="#" class="bg-primary-50 text-primary-700 px-3 py-1 rounded-full text-sm hover:bg-primary-100 transition-colors duration-200">#narrative</a>
+                            </div>
+                        </div>
+
+                        <!-- Author Bio -->
+                        <div class="mt-12 p-6 bg-gray-50 rounded-xl">
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0">
+                                    <div class="w-16 h-16 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                                        SJ
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-lg font-semibold text-navy-800 mb-2">Sarah Johnson</h4>
+                                    <p class="text-navy-600 text-sm leading-relaxed">
+                                        Sarah is a literary critic and author with over 15 years of experience in contemporary fiction analysis. She holds a PhD in English Literature from Columbia University and has published numerous articles on modern storytelling techniques. When not writing, she enjoys exploring independent bookstores and mentoring emerging writers.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Sidebar -->
+                <aside class="lg:col-span-1">
+                    <div class="sticky top-24 space-y-8">
+                        <!-- Table of Contents -->
+                        <div class="bg-white rounded-xl shadow-lg p-6">
+                            <h3 class="text-lg font-semibold text-navy-800 mb-4 flex items-center">
+                                <i data-lucide="list" class="h-5 w-5 mr-2 text-primary-500"></i>
+                                Table of Contents
+                            </h3>
+                            <nav class="space-y-2">
+                                <a href="#" class="block text-navy-600 hover:text-primary-600 text-sm py-1">The Foundation of Great Storytelling</a>
+                                <a href="#" class="block text-navy-600 hover:text-primary-600 text-sm py-1">Modern Techniques and Innovation</a>
+                                <a href="#" class="block text-navy-600 hover:text-primary-600 text-sm py-1 ml-4">Digital Age Storytelling</a>
+                                <a href="#" class="block text-navy-600 hover:text-primary-600 text-sm py-1">The Psychology Behind Compelling Narratives</a>
+                                <a href="#" class="block text-navy-600 hover:text-primary-600 text-sm py-1">Cultural Impact and Social Responsibility</a>
+                                <a href="#" class="block text-navy-600 hover:text-primary-600 text-sm py-1">Looking Forward: The Future of Storytelling</a>
+                            </nav>
+                        </div>
+
+                        <!-- Related Books -->
+                        <div class="bg-white rounded-xl shadow-lg p-6">
+                            <h3 class="text-lg font-semibold text-navy-800 mb-6 flex items-center">
+                                <i data-lucide="book-open" class="h-5 w-5 mr-2 text-primary-500"></i>
+                                Related Books
+                            </h3>
+                            <div class="space-y-6">
+                                <div class="flex items-start space-x-3">
+                                    <img src="assets/images/book-2.jpg" alt="On Writing" class="w-16 h-20 object-cover rounded">
+                                    <div class="flex-1">
+                                        <h4 class="font-semibold text-navy-800 text-sm mb-1">On Writing: A Memoir of the Craft</h4>
+                                        <p class="text-navy-600 text-xs mb-2">by Stephen King</p>
+                                        <a href="#" class="text-primary-600 text-xs font-medium hover:text-primary-700">View on Amazon →</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <img src="assets/images/book-3.jpg" alt="Story Genius" class="w-16 h-20 object-cover rounded">
+                                    <div class="flex-1">
+                                        <h4 class="font-semibold text-navy-800 text-sm mb-1">Story Genius: How to Use Brain Science</h4>
+                                        <p class="text-navy-600 text-xs mb-2">by Lisa Cron</p>
+                                        <a href="#" class="text-primary-600 text-xs font-medium hover:text-primary-700">View on Amazon →</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <img src="assets/images/book-4.jpg" alt="The Art of Fiction" class="w-16 h-20 object-cover rounded">
+                                    <div class="flex-1">
+                                        <h4 class="font-semibold text-navy-800 text-sm mb-1">The Art of Fiction</h4>
+                                        <p class="text-navy-600 text-xs mb-2">by John Gardner</p>
+                                        <a href="#" class="text-primary-600 text-xs font-medium hover:text-primary-700">View on Amazon →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Related Articles -->
+                        <div class="bg-white rounded-xl shadow-lg p-6">
+                            <h3 class="text-lg font-semibold text-navy-800 mb-6 flex items-center">
+                                <i data-lucide="file-text" class="h-5 w-5 mr-2 text-primary-500"></i>
+                                Related Articles
+                            </h3>
+                            <div class="space-y-4">
+                                <div class="border-b border-gray-100 pb-4">
+                                    <h4 class="font-semibold text-navy-800 text-sm mb-2 line-clamp-2">
+                                        <a href="blog-details.html" class="hover:text-primary-600">Essential Reading List for Book Enthusiasts</a>
+                                    </h4>
+                                    <p class="text-navy-500 text-xs">Oct 3, 2024 • 987 views</p>
+                                </div>
+                                <div class="border-b border-gray-100 pb-4">
+                                    <h4 class="font-semibold text-navy-800 text-sm mb-2 line-clamp-2">
+                                        <a href="blog-details.html" class="hover:text-primary-600">How to Build Your Personal Library</a>
+                                    </h4>
+                                    <p class="text-navy-500 text-xs">Oct 1, 2024 • 756 views</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-navy-800 text-sm mb-2 line-clamp-2">
+                                        <a href="blog-details.html" class="hover:text-primary-600">Digital vs Physical Books: The Ultimate Debate</a>
+                                    </h4>
+                                    <p class="text-navy-500 text-xs">Sep 28, 2024 • 543 views</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Newsletter Signup -->
+                        <div class="bg-gradient-to-br from-primary-500 to-primary-600 text-white rounded-xl shadow-lg p-6">
+                            <h3 class="text-lg font-semibold mb-3 flex items-center">
+                                <i data-lucide="mail" class="h-5 w-5 mr-2"></i>
+                                Stay Updated
+                            </h3>
+                            <p class="text-primary-100 text-sm mb-4">Get the latest articles and book recommendations delivered to your inbox.</p>
+                            <form class="space-y-3">
+                                <input type="email" placeholder="Enter your email" class="w-full px-4 py-2 rounded-lg text-navy-800 placeholder-navy-400 focus:outline-none focus:ring-2 focus:ring-white">
+                                <button type="submit" class="w-full bg-white text-primary-600 font-semibold py-2 rounded-lg hover:bg-primary-50 transition-colors duration-200">
+                                    Subscribe
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+
+        <!-- Comments Section -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+            <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 lg:p-12">
+                <h3 class="text-2xl font-bold text-navy-800 mb-8">Comments</h3>
+                
+                <!-- Comment Form -->
+                <div class="bg-gray-50 rounded-xl p-6 mb-8">
+                    <h4 class="text-lg font-semibold text-navy-800 mb-4">Leave a Comment</h4>
+                    <form class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input type="text" placeholder="Your Name" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                            <input type="email" placeholder="Your Email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                        </div>
+                        <textarea placeholder="Your Comment" rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"></textarea>
+                        <button type="submit" class="btn-primary">
+                            Post Comment
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Sample Comments -->
+                <div class="space-y-6">
+                    <div class="border-b border-gray-200 pb-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold">
+                                MR
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <h5 class="font-semibold text-navy-800">Maria Rodriguez</h5>
+                                    <span class="text-navy-400 text-sm">•</span>
+                                    <span class="text-navy-400 text-sm">2 days ago</span>
+                                </div>
+                                <p class="text-navy-600 leading-relaxed">
+                                    Excellent article! Your insights into modern storytelling techniques are particularly valuable. I've been struggling with character development in my own writing, and your section on multi-dimensional characters gave me some great ideas to work with.
+                                </p>
+                                <div class="flex items-center space-x-4 mt-3">
+                                    <button class="text-navy-500 hover:text-primary-600 text-sm font-medium flex items-center">
+                                        <i data-lucide="thumbs-up" class="h-4 w-4 mr-1"></i>
+                                        12
+                                    </button>
+                                    <button class="text-navy-500 hover:text-primary-600 text-sm font-medium">
+                                        Reply
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-gray-200 pb-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center text-white font-bold">
+                                JD
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <h5 class="font-semibold text-navy-800">James Davidson</h5>
+                                    <span class="text-navy-400 text-sm">•</span>
+                                    <span class="text-navy-400 text-sm">3 days ago</span>
+                                </div>
+                                <p class="text-navy-600 leading-relaxed">
+                                    As a literature professor, I appreciate how you've connected traditional storytelling elements with contemporary innovations. The section on digital age storytelling is especially relevant for today's students. I'll definitely be sharing this with my classes.
+                                </p>
+                                <div class="flex items-center space-x-4 mt-3">
+                                    <button class="text-navy-500 hover:text-primary-600 text-sm font-medium flex items-center">
+                                        <i data-lucide="thumbs-up" class="h-4 w-4 mr-1"></i>
+                                        8
+                                    </button>
+                                    <button class="text-navy-500 hover:text-primary-600 text-sm font-medium">
+                                        Reply
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+                                AL
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <h5 class="font-semibold text-navy-800">Anna Liu</h5>
+                                    <span class="text-navy-400 text-sm">•</span>
+                                    <span class="text-navy-400 text-sm">5 days ago</span>
+                                </div>
+                                <p class="text-navy-600 leading-relaxed">
+                                    Thank you for this comprehensive overview! The psychological aspects of storytelling were fascinating to read about. I had no idea about the neural coupling phenomenon. It explains so much about why certain books stay with us long after we've finished reading them.
+                                </p>
+                                <div class="flex items-center space-x-4 mt-3">
+                                    <button class="text-navy-500 hover:text-primary-600 text-sm font-medium flex items-center">
+                                        <i data-lucide="thumbs-up" class="h-4 w-4 mr-1"></i>
+                                        15
+                                    </button>
+                                    <button class="text-navy-500 hover:text-primary-600 text-sm font-medium">
+                                        Reply
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-navy-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Brand Section -->
+                <div class="space-y-4">
+                    <div class="text-2xl font-bold text-primary-500">
+                        Boganto
+                    </div>
+                    <p class="text-navy-300 text-sm leading-relaxed">
+                        Your premium destination for literary excellence and book discovery.
+                    </p>
+                    
+                    <!-- Social Icons -->
+                    <div class="flex space-x-4">
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="text-navy-400 hover:text-primary-500 transition-colors duration-200">
+                            <i data-lucide="facebook" class="h-5 w-5"></i>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="text-navy-400 hover:text-primary-500 transition-colors duration-200">
+                            <i data-lucide="twitter" class="h-5 w-5"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="text-navy-400 hover:text-primary-500 transition-colors duration-200">
+                            <i data-lucide="instagram" class="h-5 w-5"></i>
+                        </a>
+                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="text-navy-400 hover:text-primary-500 transition-colors duration-200">
+                            <i data-lucide="youtube" class="h-5 w-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold text-white">Quick Links</h3>
+                    <div class="space-y-2">
+                        <a href="index.html" class="block text-navy-300 hover:text-primary-500 transition-colors duration-200 text-sm">Home</a>
+                        <a href="#" class="block text-navy-300 hover:text-primary-500 transition-colors duration-200 text-sm">Books</a>
+                        <a href="#" class="block text-navy-300 hover:text-primary-500 transition-colors duration-200 text-sm">Categories</a>
+                        <a href="featured.html" class="block text-navy-300 hover:text-primary-500 transition-colors duration-200 text-sm">Featured</a>
+                        <a href="latest.html" class="block text-navy-300 hover:text-primary-500 transition-colors duration-200 text-sm">Latest</a>
+                        <a href="#" class="block text-navy-300 hover:text-primary-500 transition-colors duration-200 text-sm">About Us</a>
+                    </div>
+                </div>
+
+                <!-- Popular Categories -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold text-white">Popular Categories</h3>
+                    <div class="space-y-2">
+                        <a href="#" class="block text-navy-300 hover:text-primary-500 transition-colors duration-200 text-sm">Fiction</a>
+                        <a href="#" class="block text-navy-300 hover:text-primary-500 transition-colors duration-200 text-sm">Children's Fiction</a>
+                        <a href="#" class="block text-navy-300 hover:text-primary-500 transition-colors duration-200 text-sm">Science</a>
+                        <a href="#" class="block text-navy-300 hover:text-primary-500 transition-colors duration-200 text-sm">History</a>
+                        <a href="#" class="block text-navy-300 hover:text-primary-500 transition-colors duration-200 text-sm">Biography & Autobiography</a>
+                        <a href="#" class="block text-navy-300 hover:text-primary-500 transition-colors duration-200 text-sm">Health & Fitness</a>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold text-white">Contact Info</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <i data-lucide="map-pin" class="h-4 w-4 text-primary-500 flex-shrink-0"></i>
+                            <span class="text-navy-300 text-sm">123 Library Avenue, Book City</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i data-lucide="phone" class="h-4 w-4 text-primary-500 flex-shrink-0"></i>
+                            <span class="text-navy-300 text-sm">+1 (555) 123-4567</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i data-lucide="mail" class="h-4 w-4 text-primary-500 flex-shrink-0"></i>
+                            <span class="text-navy-300 text-sm">hello@boganto.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Border -->
+            <div class="border-t border-navy-800 mt-12 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-navy-400 text-sm">
+                        © 2024 Boganto. All rights reserved.
+                    </p>
+                    <div class="flex space-x-6 mt-4 md:mt-0">
+                        <a href="#" class="text-navy-400 hover:text-primary-500 text-sm transition-colors duration-200">Privacy Policy</a>
+                        <a href="#" class="text-navy-400 hover:text-primary-500 text-sm transition-colors duration-200">Terms of Service</a>
+                        <a href="#" class="text-navy-400 hover:text-primary-500 text-sm transition-colors duration-200">Admin</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const button = this;
+            
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                button.innerHTML = '<i data-lucide="x" class="h-6 w-6"></i>';
+                lucide.createIcons();
+            } else {
+                mobileMenu.classList.add('hidden');
+                button.innerHTML = '<i data-lucide="menu" class="h-6 w-6"></i>';
+                lucide.createIcons();
+            }
+        });
+    </script>
+</body>
+</html>

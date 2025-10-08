@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boganto - Premium Bookstore Blog</title>
+    <meta name="description" content="Discover the latest articles, book reviews, and literary insights on Boganto - your premium destination for book lovers and literature enthusiasts.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                        },
+                        navy: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.7), rgba(30, 41, 59, 0.5));
+        }
+        
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .text-shadow-lg {
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+        }
+        
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .card {
+            @apply bg-white rounded-xl shadow-lg border border-gray-100;
+        }
+        
+        .btn-primary {
+            @apply bg-primary-500 text-white font-semibold py-3 px-6 rounded-lg hover:bg-primary-600 transition-all duration-200 transform hover:scale-105;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center">
+                    <div class="text-2xl font-bold text-primary-500">
+                        Boganto
+                    </div>
+                    <div class="ml-2 text-sm text-navy-600 hidden sm:block">
+                        Premium Bookstore
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-primary-500 font-medium">Home</a>
+                    <a href="#" class="text-navy-700 hover:text-primary-500 font-medium transition-colors duration-200">Books</a>
+                    <a href="#" class="text-navy-700 hover:text-primary-500 font-medium transition-colors duration-200">Categories</a>
+                    <a href="featured.html" class="text-navy-700 hover:text-primary-500 font-medium transition-colors duration-200">Featured</a>
+                    <a href="latest.html" class="text-navy-700 hover:text-primary-500 font-medium transition-colors duration-200">Latest</a>
+                    <a href="#" class="text-navy-700 hover:text-primary-500 font-medium transition-colors duration-200">Contact</a>
+                </nav>
+
+                <!-- Search Bar -->
+                <div class="hidden md:flex items-center">
+                    <form class="relative">
+                        <input type="text" placeholder="Search blogs..." class="w-64 pl-4 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                        <button type="submit" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-primary-500">
+                            <i data-lucide="search" class="h-5 w-5"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-navy-700 hover:text-primary-500 focus:outline-none focus:text-primary-500">
+                        <i data-lucide="menu" class="h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="md:hidden hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200">
+                    <a href="index.html" class="block px-3 py-2 text-primary-500 font-medium">Home</a>
+                    <a href="#" class="block px-3 py-2 text-navy-700 hover:text-primary-500 font-medium">Books</a>
+                    <a href="#" class="block px-3 py-2 text-navy-700 hover:text-primary-500 font-medium">Categories</a>
+                    <a href="featured.html" class="block px-3 py-2 text-navy-700 hover:text-primary-500 font-medium">Featured</a>
+                    <a href="latest.html" class="block px-3 py-2 text-navy-700 hover:text-primary-500 font-medium">Latest</a>
+                    <a href="#" class="block px-3 py-2 text-navy-700 hover:text-primary-500 font-medium">Contact</a>
+                    
+                    <!-- Mobile Search -->
+                    <div class="px-3 py-2">
+                        <form class="relative">
+                            <input type="text" placeholder="Search blogs..." class="w-full pl-4 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                            <button type="submit" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-primary-500">
+                                <i data-lucide="search" class="h-5 w-5"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Banner -->
+        <section class="relative h-96 md:h-[500px] lg:h-[600px] overflow-hidden group cursor-pointer">
+            <!-- Background Image -->
+            <div class="absolute inset-0">
+                <img src="assets/images/hero-banner.jpg" alt="Welcome to Boganto" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105">
+                <div class="absolute inset-0 hero-section group-hover:bg-black/30 transition-colors duration-300"></div>
+            </div>
+
+            <!-- Content -->
+            <div class="relative z-10 h-full flex items-center">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-3xl">
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 text-shadow-lg leading-tight">
+                            Welcome to Boganto
+                        </h1>
+                        <p class="text-xl md:text-2xl text-gray-200 mb-8 text-shadow leading-relaxed">
+                            Discover the finest collection of book reviews, literary insights, and captivating stories
+                        </p>
+                        <a href="featured.html" class="btn-primary inline-flex items-center text-lg px-8 py-4 hover:bg-primary-700 transform hover:scale-105 transition-all duration-200">
+                            Explore Articles
+                            <i data-lucide="chevron-right" class="ml-2 h-5 w-5"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <!-- Left Sidebar - Categories and Popular Articles -->
+                <aside class="lg:col-span-1 order-2 lg:order-1">
+                    <div class="sticky top-24 space-y-8">
+                        <!-- Categories -->
+                        <div class="bg-white rounded-xl shadow-lg p-6">
+                            <h3 class="text-lg font-semibold text-navy-800 mb-6 flex items-center">
+                                <i data-lucide="folder" class="h-5 w-5 mr-2 text-primary-500"></i>
+                                Categories
+                            </h3>
+                            <div class="space-y-2">
+                                <a href="#" class="block text-navy-700 hover:text-primary-500 py-2 px-3 rounded-lg hover:bg-primary-50 transition-colors duration-200">Fiction</a>
+                                <a href="#" class="block text-navy-700 hover:text-primary-500 py-2 px-3 rounded-lg hover:bg-primary-50 transition-colors duration-200">Children's Fiction</a>
+                                <a href="#" class="block text-navy-700 hover:text-primary-500 py-2 px-3 rounded-lg hover:bg-primary-50 transition-colors duration-200">Science</a>
+                                <a href="#" class="block text-navy-700 hover:text-primary-500 py-2 px-3 rounded-lg hover:bg-primary-50 transition-colors duration-200">History</a>
+                                <a href="#" class="block text-navy-700 hover:text-primary-500 py-2 px-3 rounded-lg hover:bg-primary-50 transition-colors duration-200">Biography & Autobiography</a>
+                                <a href="#" class="block text-navy-700 hover:text-primary-500 py-2 px-3 rounded-lg hover:bg-primary-50 transition-colors duration-200">Health & Fitness</a>
+                                <a href="#" class="block text-navy-700 hover:text-primary-500 py-2 px-3 rounded-lg hover:bg-primary-50 transition-colors duration-200">Technology</a>
+                                <a href="#" class="block text-navy-700 hover:text-primary-500 py-2 px-3 rounded-lg hover:bg-primary-50 transition-colors duration-200">Travel & Tourism</a>
+                            </div>
+                        </div>
+
+                        <!-- Popular Articles -->
+                        <div class="bg-white rounded-xl shadow-lg p-6">
+                            <h3 class="text-lg font-semibold text-navy-800 mb-6 flex items-center">
+                                <i data-lucide="trending-up" class="h-5 w-5 mr-2 text-primary-500"></i>
+                                Popular Articles
+                            </h3>
+
+                            <div class="space-y-1">
+                                <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                                    <div class="flex-shrink-0">
+                                        <img src="assets/images/book-1.jpg" alt="Article" class="w-16 h-16 object-cover rounded-lg">
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="text-sm font-semibold text-navy-800 leading-tight mb-1 hover:text-primary-600 transition-colors duration-200">
+                                            <a href="blog-details.html" class="line-clamp-2">
+                                                The Art of Storytelling in Modern Literature
+                                            </a>
+                                        </h4>
+                                        <div class="flex items-center text-xs text-navy-400">
+                                            <span>1,234 views</span>
+                                            <span class="ml-2 px-2 py-0.5 bg-primary-100 text-primary-600 rounded-full text-xs">Featured</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                                    <div class="flex-shrink-0">
+                                        <img src="assets/images/book-2.jpg" alt="Article" class="w-16 h-16 object-cover rounded-lg">
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="text-sm font-semibold text-navy-800 leading-tight mb-1 hover:text-primary-600 transition-colors duration-200">
+                                            <a href="blog-details.html" class="line-clamp-2">
+                                                Essential Reading List for Book Enthusiasts
+                                            </a>
+                                        </h4>
+                                        <div class="flex items-center text-xs text-navy-400">
+                                            <span>987 views</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                                    <div class="flex-shrink-0">
+                                        <img src="assets/images/book-3.jpg" alt="Article" class="w-16 h-16 object-cover rounded-lg">
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="text-sm font-semibold text-navy-800 leading-tight mb-1 hover:text-primary-600 transition-colors duration-200">
+                                            <a href="blog-details.html" class="line-clamp-2">
+                                                How to Build Your Personal Library
+                                            </a>
+                                        </h4>
+                                        <div class="flex items-center text-xs text-navy-400">
+                                            <span>756 views</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                                    <div class="flex-shrink-0">
+                                        <img src="assets/images/book-4.jpg" alt="Article" class="w-16 h-16 object-cover rounded-lg">
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="text-sm font-semibold text-navy-800 leading-tight mb-1 hover:text-primary-600 transition-colors duration-200">
+                                            <a href="blog-details.html" class="line-clamp-2">
+                                                Digital vs Physical Books: The Ultimate Debate
+                                            </a>
+                                        </h4>
+                                        <div class="flex items-center text-xs text-navy-400">
+                                            <span>543 views</span>
+                                            <span class="ml-2 px-2 py-0.5 bg-primary-100 text-primary-600 rounded-full text-xs">Featured</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Main Content -->
+                <section class="lg:col-span-3 order-1 lg:order-2">
+                    <div class="space-y-12">
+                        <!-- Featured Articles Section -->
+                        <section class="relative">
+                            <!-- Section Header -->
+                            <div class="text-center mb-12">
+                                <h2 class="text-4xl font-bold text-navy-800 mb-4">
+                                    Featured Articles
+                                </h2>
+                                <p class="text-lg text-navy-600 max-w-2xl mx-auto leading-relaxed">
+                                    Discover our handpicked articles that showcase the best insights, stories, and knowledge
+                                </p>
+                            </div>
+
+                            <!-- Featured Cards Grid -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mb-12">
+                                <!-- Featured Article 1 -->
+                                <div class="group">
+                                    <article class="bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 h-full transform group-hover:-translate-y-2">
+                                        <!-- Image Container with Overlay -->
+                                        <div class="relative h-56 overflow-hidden">
+                                            <img src="assets/images/book-1.jpg" alt="The Art of Storytelling" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                            <!-- Category Badge -->
+                                            <div class="absolute top-4 right-4">
+                                                <span class="bg-white/90 backdrop-blur-sm text-navy-800 px-3 py-1.5 rounded-full text-sm font-medium hover:bg-white transition-colors shadow-lg">
+                                                    Fiction
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Content -->
+                                        <div class="p-6">
+                                            <!-- Meta Info -->
+                                            <div class="flex items-center text-sm text-navy-500 mb-3">
+                                                <i data-lucide="calendar" class="h-4 w-4 mr-2"></i>
+                                                <span class="font-medium">October 5, 2024</span>
+                                                <div class="flex items-center ml-4">
+                                                    <i data-lucide="eye" class="h-4 w-4 mr-1"></i>
+                                                    <span>1,234 views</span>
+                                                </div>
+                                            </div>
+
+                                            <!-- Title -->
+                                            <h3 class="font-bold text-xl text-navy-800 mb-3 leading-tight group-hover:text-primary-600 transition-colors duration-300 line-clamp-2">
+                                                <a href="blog-details.html">
+                                                    The Art of Storytelling in Modern Literature
+                                                </a>
+                                            </h3>
+
+                                            <!-- Excerpt -->
+                                            <p class="text-navy-600 leading-relaxed line-clamp-3 mb-4">
+                                                Explore the timeless techniques that make stories captivating and discover how contemporary authors are reshaping narrative traditions...
+                                            </p>
+
+                                            <!-- Read More Link -->
+                                            <a href="blog-details.html" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold group/link transition-colors duration-200">
+                                                Read Article
+                                                <svg class="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </article>
+                                </div>
+
+                                <!-- Featured Article 2 -->
+                                <div class="group">
+                                    <article class="bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 h-full transform group-hover:-translate-y-2">
+                                        <div class="relative h-56 overflow-hidden">
+                                            <img src="assets/images/book-2.jpg" alt="Essential Reading List" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                            <div class="absolute top-4 right-4">
+                                                <span class="bg-white/90 backdrop-blur-sm text-navy-800 px-3 py-1.5 rounded-full text-sm font-medium hover:bg-white transition-colors shadow-lg">
+                                                    Recommendations
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="p-6">
+                                            <div class="flex items-center text-sm text-navy-500 mb-3">
+                                                <i data-lucide="calendar" class="h-4 w-4 mr-2"></i>
+                                                <span class="font-medium">October 3, 2024</span>
+                                                <div class="flex items-center ml-4">
+                                                    <i data-lucide="eye" class="h-4 w-4 mr-1"></i>
+                                                    <span>987 views</span>
+                                                </div>
+                                            </div>
+                                            <h3 class="font-bold text-xl text-navy-800 mb-3 leading-tight group-hover:text-primary-600 transition-colors duration-300 line-clamp-2">
+                                                <a href="blog-details.html">
+                                                    Essential Reading List for Book Enthusiasts
+                                                </a>
+                                            </h3>
+                                            <p class="text-navy-600 leading-relaxed line-clamp-3 mb-4">
+                                                Curated collection of must-read books that every literature lover should have on their shelf, from classics to contemporary masterpieces...
+                                            </p>
+                                            <a href="blog-details.html" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold group/link transition-colors duration-200">
+                                                Read Article
+                                                <svg class="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </article>
+                                </div>
+
+                                <!-- Featured Article 3 -->
+                                <div class="group">
+                                    <article class="bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 h-full transform group-hover:-translate-y-2">
+                                        <div class="relative h-56 overflow-hidden">
+                                            <img src="assets/images/book-3.jpg" alt="Building Your Library" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                            <div class="absolute top-4 right-4">
+                                                <span class="bg-white/90 backdrop-blur-sm text-navy-800 px-3 py-1.5 rounded-full text-sm font-medium hover:bg-white transition-colors shadow-lg">
+                                                    Guides
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="p-6">
+                                            <div class="flex items-center text-sm text-navy-500 mb-3">
+                                                <i data-lucide="calendar" class="h-4 w-4 mr-2"></i>
+                                                <span class="font-medium">October 1, 2024</span>
+                                                <div class="flex items-center ml-4">
+                                                    <i data-lucide="eye" class="h-4 w-4 mr-1"></i>
+                                                    <span>756 views</span>
+                                                </div>
+                                            </div>
+                                            <h3 class="font-bold text-xl text-navy-800 mb-3 leading-tight group-hover:text-primary-600 transition-colors duration-300 line-clamp-2">
+                                                <a href="blog-details.html">
+                                                    How to Build Your Personal Library
+                                                </a>
+                                            </h3>
+                                            <p class="text-navy-600 leading-relaxed line-clamp-3 mb-4">
+                                                Step-by-step guide to creating a meaningful book collection that reflects your interests and grows with your reading journey...
+                                            </p>
+                                            <a href="blog-details.html" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold group/link transition-colors duration-200">
+                                                Read Article
+                                                <svg class="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+
+                            <!-- See More Button -->
+                            <div class="text-center mt-8">
+                                <a href="featured.html" class="inline-flex items-center px-6 py-3 border-2 border-primary-500 text-primary-500 font-medium rounded-lg transition-all duration-200 hover:bg-primary-500 hover:text-white gap-2">
+                                    <span>See More</span>
+                                    <svg class="w-5 h-5 transform transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </section>
+
+                        <!-- Latest Articles Section -->
+                        <section class="relative">
+                            <!-- Section Header -->
+                            <div class="text-center mb-12">
+                                <h2 class="text-4xl font-bold text-navy-800 mb-4">
+                                    Latest Articles
+                                </h2>
+                                <p class="text-lg text-navy-600 max-w-2xl mx-auto leading-relaxed">
+                                    Stay up-to-date with our most recent publications and insights
+                                </p>
+                            </div>
+
+                            <!-- Articles Grid -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                                <!-- Latest Article 1 -->
+                                <article class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden border border-gray-100 transform hover:-translate-y-1">
+                                    <div class="relative h-48 overflow-hidden">
+                                        <img src="assets/images/book-4.jpg" alt="Digital vs Physical Books" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                        <div class="absolute top-3 left-3">
+                                            <span class="bg-white/90 backdrop-blur-sm text-navy-800 px-2.5 py-1 rounded-full text-xs font-semibold hover:bg-white transition-colors shadow-lg">
+                                                Technology
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="p-6">
+                                        <div class="flex items-center justify-between text-sm text-navy-500 mb-3">
+                                            <div class="flex items-center">
+                                                <i data-lucide="calendar" class="h-4 w-4 mr-1.5"></i>
+                                                <span class="font-medium">Oct 8</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i data-lucide="eye" class="h-4 w-4 mr-1"></i>
+                                                <span>543</span>
+                                            </div>
+                                        </div>
+                                        <h3 class="font-bold text-lg text-navy-800 mb-3 leading-tight group-hover:text-primary-600 transition-colors duration-300 line-clamp-2">
+                                            <a href="blog-details.html">
+                                                Digital vs Physical Books: The Ultimate Debate
+                                            </a>
+                                        </h3>
+                                        <p class="text-navy-600 text-sm leading-relaxed line-clamp-2 mb-4">
+                                            Exploring the pros and cons of digital and physical books to help you decide what's best for your reading experience...
+                                        </p>
+                                        <a href="blog-details.html" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold text-sm group/link transition-colors duration-200">
+                                            Continue Reading
+                                            <svg class="w-3.5 h-3.5 ml-1.5 transform group-hover/link:translate-x-0.5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </article>
+
+                                <!-- Latest Article 2 -->
+                                <article class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden border border-gray-100 transform hover:-translate-y-1">
+                                    <div class="relative h-48 overflow-hidden">
+                                        <img src="assets/images/book-5.jpg" alt="Reading Habits" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                        <div class="absolute top-3 left-3">
+                                            <span class="bg-white/90 backdrop-blur-sm text-navy-800 px-2.5 py-1 rounded-full text-xs font-semibold hover:bg-white transition-colors shadow-lg">
+                                                Self-Help
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="p-6">
+                                        <div class="flex items-center justify-between text-sm text-navy-500 mb-3">
+                                            <div class="flex items-center">
+                                                <i data-lucide="calendar" class="h-4 w-4 mr-1.5"></i>
+                                                <span class="font-medium">Oct 7</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i data-lucide="eye" class="h-4 w-4 mr-1"></i>
+                                                <span>421</span>
+                                            </div>
+                                        </div>
+                                        <h3 class="font-bold text-lg text-navy-800 mb-3 leading-tight group-hover:text-primary-600 transition-colors duration-300 line-clamp-2">
+                                            <a href="blog-details.html">
+                                                Building Better Reading Habits That Stick
+                                            </a>
+                                        </h3>
+                                        <p class="text-navy-600 text-sm leading-relaxed line-clamp-2 mb-4">
+                                            Practical tips and strategies to develop consistent reading habits that will transform your literary journey...
+                                        </p>
+                                        <a href="blog-details.html" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold text-sm group/link transition-colors duration-200">
+                                            Continue Reading
+                                            <svg class="w-3.5 h-3.5 ml-1.5 transform group-hover/link:translate-x-0.5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </article>
+
+                                <!-- Latest Article 3 -->
+                                <article class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden border border-gray-100 transform hover:-translate-y-1">
+                                    <div class="relative h-48 overflow-hidden">
+                                        <img src="assets/images/book-6.jpg" alt="Author Spotlight" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                        <div class="absolute top-3 left-3">
+                                            <span class="bg-white/90 backdrop-blur-sm text-navy-800 px-2.5 py-1 rounded-full text-xs font-semibold hover:bg-white transition-colors shadow-lg">
+                                                Biography
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="p-6">
+                                        <div class="flex items-center justify-between text-sm text-navy-500 mb-3">
+                                            <div class="flex items-center">
+                                                <i data-lucide="calendar" class="h-4 w-4 mr-1.5"></i>
+                                                <span class="font-medium">Oct 6</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i data-lucide="eye" class="h-4 w-4 mr-1"></i>
+                                                <span>389</span>
+                                            </div>
+                                        </div>
+                                        <h3 class="font-bold text-lg text-navy-800 mb-3 leading-tight group-hover:text-primary-600 transition-colors duration-300 line-clamp-2">
+                                            <a href="blog-details.html">
+                                                Author Spotlight: Rising Stars in Contemporary Fiction
+                                            </a>
+                                        </h3>
+                                        <p class="text-navy-600 text-sm leading-relaxed line-clamp-2 mb-4">
+                                            Meet the emerging voices shaping modern literature with their innovative storytelling and unique perspectives...
+                                        </p>
+                                        <a href="blog-details.html" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold text-sm group/link transition-colors duration-200">
+                                            Continue Reading
+                                            <svg class="w-3.5 h-3.5 ml-1.5 transform group-hover/link:translate-x-0.5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </article>
+
+                                <!-- Latest Article 4 -->
+                                <article class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden border border-gray-100 transform hover:-translate-y-1">
+                                    <div class="relative h-48 overflow-hidden">
+                                        <img src="assets/images/book-7.jpg" alt="Travel Literature" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                        <div class="absolute top-3 left-3">
+                                            <span class="bg-white/90 backdrop-blur-sm text-navy-800 px-2.5 py-1 rounded-full text-xs font-semibold hover:bg-white transition-colors shadow-lg">
+                                                Travel
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="p-6">
+                                        <div class="flex items-center justify-between text-sm text-navy-500 mb-3">
+                                            <div class="flex items-center">
+                                                <i data-lucide="calendar" class="h-4 w-4 mr-1.5"></i>
+                                                <span class="font-medium">Oct 5</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i data-lucide="eye" class="h-4 w-4 mr-1"></i>
+                                                <span>298</span>
+                                            </div>
+                                        </div>
+                                        <h3 class="font-bold text-lg text-navy-800 mb-3 leading-tight group-hover:text-primary-600 transition-colors duration-300 line-clamp-2">
+                                            <a href="blog-details.html">
+                                                Travel Through Books: Literary Journeys Around the World
+                                            </a>
+                                        </h3>
+                                        <p class="text-navy-600 text-sm leading-relaxed line-clamp-2 mb-4">
+                                            Explore different cultures and destinations through the pages of captivating travel literature and memoirs...
+                                        </p>
+                                        <a href="blog-details.html" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold text-sm group/link transition-colors duration-200">
+                                            Continue Reading
+                                            <svg class="w-3.5 h-3.5 ml-1.5 transform group-hover/link:translate-x-0.5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </article>
+
+                                <!-- Latest Article 5 -->
+                                <article class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden border border-gray-100 transform hover:-translate-y-1">
+                                    <div class="relative h-48 overflow-hidden">
+                                        <img src="assets/images/book-8.jpg" alt="Book Club Tips" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                        <div class="absolute top-3 left-3">
+                                            <span class="bg-white/90 backdrop-blur-sm text-navy-800 px-2.5 py-1 rounded-full text-xs font-semibold hover:bg-white transition-colors shadow-lg">
+                                                Community
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="p-6">
+                                        <div class="flex items-center justify-between text-sm text-navy-500 mb-3">
+                                            <div class="flex items-center">
+                                                <i data-lucide="calendar" class="h-4 w-4 mr-1.5"></i>
+                                                <span class="font-medium">Oct 4</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i data-lucide="eye" class="h-4 w-4 mr-1"></i>
+                                                <span>267</span>
+                                            </div>
+                                        </div>
+                                        <h3 class="font-bold text-lg text-navy-800 mb-3 leading-tight group-hover:text-primary-600 transition-colors duration-300 line-clamp-2">
+                                            <a href="blog-details.html">
+                                                Starting Your Own Book Club: A Complete Guide
+                                            </a>
+                                        </h3>
+                                        <p class="text-navy-600 text-sm leading-relaxed line-clamp-2 mb-4">
+                                            Everything you need to know about creating and maintaining a thriving book club in your community...
+                                        </p>
+                                        <a href="blog-details.html" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold text-sm group/link transition-colors duration-200">
+                                            Continue Reading
+                                            <svg class="w-3.5 h-3.5 ml-1.5 transform group-hover/link:translate-x-0.5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </article>
+
+                                <!-- Latest Article 6 -->
+                                <article class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden border border-gray-100 transform hover:-translate-y-1">
+                                    <div class="relative h-48 overflow-hidden">
+                                        <div class="w-full h-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center">
+                                            <span class="text-white text-3xl font-bold">📚</span>
+                                        </div>
+                                        <div class="absolute top-3 left-3">
+                                            <span class="bg-white/90 backdrop-blur-sm text-navy-800 px-2.5 py-1 rounded-full text-xs font-semibold hover:bg-white transition-colors shadow-lg">
+                                                Tips
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="p-6">
+                                        <div class="flex items-center justify-between text-sm text-navy-500 mb-3">
+                                            <div class="flex items-center">
+                                                <i data-lucide="calendar" class="h-4 w-4 mr-1.5"></i>
+                                                <span class="font-medium">Oct 3</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i data-lucide="eye" class="h-4 w-4 mr-1"></i>
+                                                <span>198</span>
+                                            </div>
+                                        </div>
+                                        <h3 class="font-bold text-lg text-navy-800 mb-3 leading-tight group-hover:text-primary-600 transition-colors duration-300 line-clamp-2">
+                                            <a href="blog-details.html">
+                                                Speed Reading Techniques That Actually Work
+                                            </a>
+                                        </h3>
+                                        <p class="text-navy-600 text-sm leading-relaxed line-clamp-2 mb-4">
+                                            Proven methods to increase your reading speed while maintaining comprehension and enjoyment...
+                                        </p>
+                                        <a href="blog-details.html" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold text-sm group/link transition-colors duration-200">
+                                            Continue Reading
+                                            <svg class="w-3.5 h-3.5 ml-1.5 transform group-hover/link:translate-x-0.5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </article>
+                            </div>
+
+                            <!-- See More Button -->
+                            <div class="text-center mt-8">
+                                <a href="latest.html" class="inline-flex items-center px-6 py-3 border-2 border-primary-500 text-primary-500 font-medium rounded-lg transition-all duration-200 hover:bg-primary-500 hover:text-white gap-2">
+                                    <span>See All Latest Articles</span>
+                                    <svg class="w-5 h-5 transform transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-navy-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Brand Section -->
+                <div class="space-y-4">
+                    <div class="text-2xl font-bold text-primary-500">
+                        Boganto
+                    </div>
+                    <p class="text-navy-300 text-sm leading-relaxed">
+                        Your premium destination for literary excellence and book discovery.
+                    </p>
+                    
+                    <!-- Social Icons -->
+                    <div class="flex space-x-4">
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="text-navy-400 hover:text-primary-500 transition-colors duration-200">
+                            <i data-lucide="facebook" class="h-5 w-5"></i>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="text-navy-400 hover:text-primary-500 transition-colors duration-200">
+                            <i data-lucide="twitter" class="h-5 w-5"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="text-navy-400 hover:text-primary-500 transition-colors duration-200">
+                            <i data-lucide="instagram" class="h-5 w-5"></i>
+                        </a>
+                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="text-navy-400 hover:text-primary-500 transition-colors duration-200">
+                            <i data-lucide="youtube" class="h-5 w-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold text-white">Quick Links</h3>
+                    <div class="space-y-2">
+                        <a href="index.html" class="block text-navy-300 hover:text-primary-500 transition-colors duration-200 text-sm">Home</a>
+                        <a href="#" class="block text-navy-300 hover:text-primary-500 transition-colors duration-200 text-sm">Books</a>
+                        <a href="#" class="block text-navy-300 hover:text-primary-500 transition-colors duration-200 text-sm">Categories</a>
+                        <a href="featured.html" class="block text-navy-300 hover:text-primary-500 transition-colors duration-200 text-sm">Featured</a>
+                        <a href="latest.html" class="block text-navy-300 hover:text-primary-500 transition-colors duration-200 text-sm">Latest</a>
+                        <a href="#" class="block text-navy-300 hover:text-primary-500 transition-colors duration-200 text-sm">About Us</a>
+                    </div>
+                </div>
+
+                <!-- Popular Categories -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold text-white">Popular Categories</h3>
+                    <div class="space-y-2">
+                        <a href="#" class="block text-navy-300 hover:text-primary-500 transition-colors duration-200 text-sm">Fiction</a>
+                        <a href="#" class="block text-navy-300 hover:text-primary-500 transition-colors duration-200 text-sm">Children's Fiction</a>
+                        <a href="#" class="block text-navy-300 hover:text-primary-500 transition-colors duration-200 text-sm">Science</a>
+                        <a href="#" class="block text-navy-300 hover:text-primary-500 transition-colors duration-200 text-sm">History</a>
+                        <a href="#" class="block text-navy-300 hover:text-primary-500 transition-colors duration-200 text-sm">Biography & Autobiography</a>
+                        <a href="#" class="block text-navy-300 hover:text-primary-500 transition-colors duration-200 text-sm">Health & Fitness</a>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold text-white">Contact Info</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <i data-lucide="map-pin" class="h-4 w-4 text-primary-500 flex-shrink-0"></i>
+                            <span class="text-navy-300 text-sm">123 Library Avenue, Book City</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i data-lucide="phone" class="h-4 w-4 text-primary-500 flex-shrink-0"></i>
+                            <span class="text-navy-300 text-sm">+1 (555) 123-4567</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i data-lucide="mail" class="h-4 w-4 text-primary-500 flex-shrink-0"></i>
+                            <span class="text-navy-300 text-sm">hello@boganto.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Border -->
+            <div class="border-t border-navy-800 mt-12 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-navy-400 text-sm">
+                        © 2024 Boganto. All rights reserved.
+                    </p>
+                    <div class="flex space-x-6 mt-4 md:mt-0">
+                        <a href="#" class="text-navy-400 hover:text-primary-500 text-sm transition-colors duration-200">Privacy Policy</a>
+                        <a href="#" class="text-navy-400 hover:text-primary-500 text-sm transition-colors duration-200">Terms of Service</a>
+                        <a href="#" class="text-navy-400 hover:text-primary-500 text-sm transition-colors duration-200">Admin</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const button = this;
+            const menuIcon = button.querySelector('[data-lucide="menu"]');
+            const closeIcon = button.querySelector('[data-lucide="x"]');
+            
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                // Change icon to X
+                button.innerHTML = '<i data-lucide="x" class="h-6 w-6"></i>';
+                lucide.createIcons();
+            } else {
+                mobileMenu.classList.add('hidden');
+                // Change icon back to menu
+                button.innerHTML = '<i data-lucide="menu" class="h-6 w-6"></i>';
+                lucide.createIcons();
+            }
+        });
+    </script>
+</body>
+</html>
